@@ -38,7 +38,7 @@ if not os.path.exists(dir_name):
 else:
     os.chdir(dir_name)
 
-middle = '/small/'
+middle = '/sq612/'
 for item in response['data']['photo_list']:
     pic_host = item['pic_host']  # 按照所属关系得到pic_host
     pic_name = item['pic_name']

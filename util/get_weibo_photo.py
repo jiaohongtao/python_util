@@ -38,7 +38,7 @@ if not os.path.exists(dir_name):
 else:
     os.chdir(dir_name)
 
-middle = '/sq612/'
+middle = '/small/'
 for item in response['data']['photo_list']:
     pic_host = item['pic_host']  # 按照所属关系得到pic_host
     pic_name = item['pic_name']
@@ -46,7 +46,7 @@ for item in response['data']['photo_list']:
     # print(new_url)
     r = requests.get(new_url)
     # 保存图片
-    with open('颜宇啊' + str(random.randint(999, 9999)) + '.jpg', 'wb') as f:
+    with open('颜宇啊' + pic_name, 'wb') as f:
         f.write(r.content)  # 写入图片，文本为text，图片为content
 
 # # print(response)

@@ -10,7 +10,7 @@ from_addr = '1007760854@qq.com'
 password = 'QQ授权码'
 
 # 收信方邮箱
-to_addr = '1007760854@qq.com'
+to_addr = '1416495947@qq.com'
 
 # 发信服务器
 smtp_server = 'smtp.qq.com'
@@ -26,7 +26,7 @@ msg = MIMEText(send_msg, 'plain', 'utf-8')
 # 邮件头信息
 msg['From'] = Header(from_addr)
 msg['To'] = Header(to_addr)
-msg['Subject'] = Header('python test')
+msg['Subject'] = Header('肺炎最新情况')
 
 # 开启发信服务，这里使用的是加密传输
 server = smtplib.SMTP_SSL(smtp_server)

@@ -7,10 +7,14 @@ from email.mime.text import MIMEText
 # 用于构建邮件头
 # 发信方的信息：发信邮箱，QQ 邮箱授权码
 from_addr = '1007760854@qq.com'
-password = 'QQ授权码'
+password = 'luiogudekxhybddd'
 
 # 收信方邮箱
-to_addr = '1416495947@qq.com'
+# to_addr = '1007760854,1416495947'
+msg_to = ['1007760854', '1416495947']
+houzhui = '@qq.com'
+for i in range(0, len(msg_to)):
+    msg_to[i] += houzhui
 
 # 发信服务器
 smtp_server = 'smtp.qq.com'
@@ -25,7 +29,8 @@ msg = MIMEText(send_msg, 'plain', 'utf-8')
 
 # 邮件头信息
 msg['From'] = Header(from_addr)
-msg['To'] = Header(to_addr)
+# msg['To'] = Header(to_addr)
+msg['To'] = ','.join(msg_to)
 msg['Subject'] = Header('肺炎最新情况')
 
 # 开启发信服务，这里使用的是加密传输
@@ -34,6 +39,7 @@ server.connect(smtp_server, 465)
 # 登录发信邮箱
 server.login(from_addr, password)
 # 发送邮件
-server.sendmail(from_addr, to_addr, msg.as_string())
+# server.sendmail(from_addr, to_addr, msg.as_string())
+server.sendmail(from_addr, msg['To'].split(','), msg.as_string().encode("utf-8"))
 # 关闭服务器
 server.quit()

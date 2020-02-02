@@ -6,17 +6,22 @@ from email.mime.text import MIMEText
 
 # 用于构建邮件头
 # 发信方的信息：发信邮箱，QQ 邮箱授权码
-from_addr = 'account@qq.com'
-password = '邮箱授权码'
+from_addr = '1007760854@qq.com'
+password = 'QQ授权码'
 
 # 收信方邮箱
-to_addr = 'toaccount@qq.com'
+to_addr = '1007760854@qq.com'
 
 # 发信服务器
 smtp_server = 'smtp.qq.com'
 
+send_msg = ''
+with open("update.txt", "r", encoding='utf-8') as f:  # 打开文件
+    data = f.read()  # 读取文件
+    send_msg = data
+
 # 邮箱正文内容，第一个参数为内容，第二个参数为格式(plain 为纯文本)，第三个参数为编码
-msg = MIMEText('发送内容', 'plain', 'utf-8')
+msg = MIMEText(send_msg, 'plain', 'utf-8')
 
 # 邮件头信息
 msg['From'] = Header(from_addr)

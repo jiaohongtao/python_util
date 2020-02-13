@@ -16,12 +16,9 @@ response = requests.get(url, headers=headers)
 response.encoding = response.apparent_encoding
 
 total = re.search(r'window\.getStatisticsService = ({.*?})', response.text).group(1)
+total = total + "]}"
+print(total)
 total = json.loads(total)
-
-# timeStamp = float(total['createTime']/1000)
-# timeArray = time.localtime(timeStamp)
-# otherStyleTime = time.strftime("%Y-%m-%d %H:%M:%S", timeArray)
-# print(otherStyleTime)
 
 # 使用time
 createTime = time.localtime(float(total['createTime'] / 1000))
@@ -53,15 +50,11 @@ for city in cities:
     data[provinceShortName]['死亡'] = deadCount
     data[provinceShortName]['治愈'] = curedCount
 
-for key in data:
-    print("%s : %s" % (key, data[key]))
+# for key in data:
+#     print("%s : %s" % (key, data[key]))
 
 with open("update.txt", "w+", encoding="utf-8") as f:
     f.write(ruleModifyTime + "\n")
     for key in data:
         # print("%s : %s" % (key, data[key]))
         f.write("%s : %s" % (key, data[key]) + "\n")
-    f.write("----------\n")
-
-# with open('{}.json'.format(datetime.now().strftime('%Y-%m-%d')), 'w', encoding='utf-8') as fp:
-#     json.dump(data, fp, ensure_ascii=False)

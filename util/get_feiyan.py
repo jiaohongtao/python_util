@@ -31,21 +31,31 @@ print(ruleModifyTime)
 data = {'全国': {}}
 
 # data['全国'] = {}
-data['全国']['确诊'] = total['confirmedCount']
+data['全国']['累计确诊'] = total['confirmedCount']
+data['全国']['现存确诊'] = total['currentConfirmedCount']
 data['全国']['疑似'] = total['suspectedCount']
 data['全国']['死亡'] = total['deadCount']
+data['全国']['重症'] = total['seriousCount']
 data['全国']['治愈'] = total['curedCount']
+
+data['全国']['累计确诊新增'] = total['confirmedIncr']
+data['全国']['现存确诊减少'] = total['currentConfirmedIncr']
+data['全国']['境外输入'] = total['suspectedCount']
+data['全国']['境外输入新增'] = total['suspectedIncr']
+data['全国']['现存重症减少'] = total['seriousIncr']
 
 cities = re.findall(r'{"provinceName":.*?]}', response.text)
 
 for city in cities:
     city = json.loads(city)
     provinceShortName = city['provinceShortName']
+    currentConfirmedCount = city['currentConfirmedCount']
     confirmedCount = city['confirmedCount']
     deadCount = city['deadCount']
     curedCount = city['curedCount']
 
     data[provinceShortName] = {}
+    data[provinceShortName]['现存确诊'] = currentConfirmedCount
     data[provinceShortName]['确诊'] = confirmedCount
     data[provinceShortName]['死亡'] = deadCount
     data[provinceShortName]['治愈'] = curedCount
@@ -55,6 +65,8 @@ for city in cities:
 
 with open("update.txt", "w+", encoding="utf-8") as f:
     f.write(ruleModifyTime + "\n")
+    f.write("---------------------\n")
     for key in data:
         # print("%s : %s" % (key, data[key]))
         f.write("%s : %s" % (key, data[key]) + "\n")
+    f.write("\n" + url)

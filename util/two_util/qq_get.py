@@ -6,14 +6,7 @@ import time
 
 from selenium import webdriver
 
-opt = webdriver.ChromeOptions()
-# opt.add_argument('--headless')
-# 更换头部
-opt.add_argument(
-    'user-agent="%s"' % 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.62 Safari/537.36')
-
-# driver = webdriver.Chrome(chrome_options=opt)
-# browser = webdriver.Chrome(chrome_options=opt)
+# 加载谷歌驱动
 browser = webdriver.Chrome("E:\\env_path\\ev\\chromedriver.exe")
 
 browser.get("https://qzone.qq.com/")  # 访问QQ空间登陆页面

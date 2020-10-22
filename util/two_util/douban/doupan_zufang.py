@@ -42,8 +42,6 @@ def get_douban_books(url, num):
             # sheet.col(0).width = 512 * 50
             sheet.write(n, 1, link)
             # sheet.col(1).width = 256 * len(link)
-            with open("../../no_upload/douban.txt", "wb") as f:
-                f.write(requests.get(i['hoverURL']).content)
             m += 1
             n += 1
         # for c in contains:
@@ -66,7 +64,7 @@ for h in range(len(head)):
     sheet.col(1).width = 256 * 50
 
 # 获取的页数
-all_page = 5
+all_page = 30
 # 每页个数
 page_size = 30
 url = 'https://www.douban.com/group/beijingzufang/discussion?start={}'

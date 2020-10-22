@@ -57,7 +57,7 @@ for h in range(len(head)):
     sheet.write(0, h, head[h])  # 把表头写到Excel里面去
 
 # 豆瓣一共有10页数据
-# 先形成网址 豆瓣是25个为页
+# 先形成网址 豆瓣是25个为一页
 url = 'https://book.douban.com/top250?start={}'
 urls = [url.format(num * 25) for num in range(10)]
 page_num = [num * 25 + 1 for num in range(10)]
